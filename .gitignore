@@ -1,0 +1,11 @@
+*.pyc
+__pycache__/
+.env
+.env.*
+db.sqlite3
+/media/
+*.mp4
+*.zip
+*.mov
+/staticfiles/
+node_modules/
