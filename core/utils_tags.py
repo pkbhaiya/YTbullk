@@ -4,6 +4,7 @@ import re
 import random
 import requests
 from typing import List
+from typing import Optional 
 
 log = logging.getLogger(__name__)
 
@@ -153,7 +154,7 @@ def generate_tags_from_snapshot_char_limit(
     suggestions_snapshot: List[str],
     n_items: int,
     char_limit: int = 400,
-    global_seed: int | None = None,
+    global_seed: Optional[int] = None,
 ) -> List[str]:
     """
     Build tags for n_items using ONLY the global suggestions_snapshot (full phrases).
@@ -206,7 +207,7 @@ def generate_tags_per_title_using_random_title_seeds_with_char_limit(
     titles: List[str],
     suggest_count: int,
     char_limit: int = 400,
-    global_seed: int | None = None,
+    global_seed: Optional[int] = None,
 ) -> List[str]:
     """
     For EACH title:

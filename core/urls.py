@@ -25,6 +25,7 @@ from .views import (
     AdminSubmissionQueueView,
     AdminRejectClaimView,
     PublicMilestoneRulesView,
+    AdminUserStatsView
 )
 
 from .views_admin_milestones import (
@@ -103,5 +104,6 @@ urlpatterns = [
     path("admin/milestones/queue", AdminMilestoneQueueView.as_view()),             # GET pending achievements
     path("admin/milestones/<int:pk>/approve", AdminMilestoneApproveView.as_view()),# POST approve
     path("admin/milestones/<int:pk>/reject", AdminMilestoneRejectView.as_view()),  # POST reject
-    path("public/milestones", PublicMilestoneRulesView.as_view()),                 # GET active rules
+    path("public/milestones", PublicMilestoneRulesView.as_view()), 
+    path("admin/users/stats", AdminUserStatsView.as_view()),                # GET active rules
 ]

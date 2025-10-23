@@ -10,7 +10,7 @@ class SiteSettings(models.Model):
     openai_api_key = models.CharField(max_length=255, blank=True, null=True)
     youtube_api_key = models.CharField(max_length=255, blank=True, null=True)
     rate_per_1000_views = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    min_withdraw_amount = models.DecimalField(max_digits=100, decimal_places=2, default=0)
+    min_withdraw_amount = models.DecimalField(max_digits=65, decimal_places=2, default=0)
 
     def __str__(self):
         return "Site Settings"

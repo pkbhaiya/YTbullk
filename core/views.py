@@ -763,3 +763,30 @@ class PublicMilestoneRulesView(APIView):
             .only("id", "active", "threshold_views", "payout_amount", "created_at", "updated_at")
         )
         return Response(MilestoneRulePublicSerializer(qs, many=True).data)
+
+
+
+
+class AdminUserStatsView(APIView):
+    """
+    GET /api/admin/users/stats
+    Optional query param: ?email=<email>
+    Returns: { total_users: int, user: MeSerializer | null }
+    Admin-only.
+    """
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        User = get_user_model()
+        total = User.objects.count()
+
+        email = (request.query_params.get("email") or "").strip().lower()
+        user_data = None
+        if email:
+            # try by email first, then username (since you use username==email)
+            u = (User.objects.filter(email__iexact=email).first()
+                 or User.objects.filter(username__iexact=email).first())
+            if u:
+                user_data = MeSerializer(u).data
+
+        return Response({"total_users": total, "user": user_data})
